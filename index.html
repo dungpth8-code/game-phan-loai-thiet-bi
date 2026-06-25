@@ -69,7 +69,7 @@
                 Câu: <span id="q-count">1</span>/10
             </div>
             <div class="text-lg md:text-2xl font-black text-rose-400 drop-shadow-md">
-                ⏳ <span id="timer">5</span>s
+                ⏳ <span id="timer">7</span>s
             </div>
         </div>
 
@@ -108,7 +108,7 @@
             <div class="text-6xl md:text-7xl mb-4 animate-bounce">🚀</div>
             <h1 class="text-2xl md:text-4xl font-black mb-4 text-indigo-600 uppercase">Trạm Không Gian<br>Tin Học 6</h1>
             <p class="text-sm md:text-lg mb-6 text-slate-600">
-                Hãy kéo thả 10 thiết bị vào đúng cổng VÀO, RA, hoặc VỪA VÀO VỪA RA. Mỗi câu chỉ có 5 giây, cố lên nhé!
+                Hãy kéo thả 10 thiết bị vào đúng cổng VÀO, RA, hoặc VỪA VÀO VỪA RA. Mỗi câu chỉ có 7 giây, cố lên nhé!
             </p>
             <button id="start-btn" class="w-full py-3 md:py-4 rounded-2xl bg-green-500 hover:bg-green-400 text-white font-black text-xl md:text-2xl shadow-[0_6px_0_#166534] active:translate-y-[6px] active:shadow-none transition-all">
                 BẮT ĐẦU NGAY
@@ -175,7 +175,7 @@
 
         let sessionDevices = []; // Chứa 10 câu hỏi cho lượt chơi hiện tại
         let score = 0;
-        let timeLeft = 5;
+        let timeLeft = 7;
         let timerInterval;
         let currentDevice = null;
         let isGameRunning = false;
@@ -279,9 +279,8 @@
 
         function handleWrong(x, y) {
             clearInterval(timerInterval);
-            score -= 5; document.getElementById('score').textContent = score;
             if(synthWrong) synthWrong.triggerAttackRelease("C3", "8n");
-            showFloatingText('Sai! -5', x, y - 20, 'text-rose-500');
+            showFloatingText('Sai!', x, y - 20, 'text-rose-500');
             dragItem.style.transition = 'none'; dragItem.classList.add('shake-anim', 'border-rose-500');
             
             // Ẩn thẻ sau khi lắc và chuyển câu luôn (Không cho thả lại)
@@ -351,7 +350,7 @@
         }
 
         function startQuestionTimer() {
-            timeLeft = 5; document.getElementById('timer').textContent = timeLeft;
+            timeLeft = 7; document.getElementById('timer').textContent = timeLeft;
             document.getElementById('timer').classList.remove('animate-pulse', 'text-rose-500');
             clearInterval(timerInterval);
             timerInterval = setInterval(() => {
@@ -363,9 +362,8 @@
 
         function handleTimeout() {
             clearInterval(timerInterval);
-            score -= 5; document.getElementById('score').textContent = score;
             if(synthWrong) synthWrong.triggerAttackRelease("C3", "8n");
-            showFloatingText('Hết giờ! -5', window.innerWidth / 2, window.innerHeight / 2 - 80, 'text-rose-500');
+            showFloatingText('Hết giờ!', window.innerWidth / 2, window.innerHeight / 2 - 80, 'text-rose-500');
             dragItem.classList.add('hidden');
             document.getElementById('ai-hint-btn').classList.add('hidden');
             setTimeout(() => { if (isGameRunning) nextItem(); }, 500);
@@ -441,7 +439,7 @@
         document.getElementById('close-ai-btn').addEventListener('click', () => {
             document.getElementById('ai-modal').classList.add('hidden');
             dragItem.classList.remove('hidden');
-            startQuestionTimer(); // Tiếp tục đếm ngược 5 giây lại từ đầu cho câu này
+            startQuestionTimer(); // Tiếp tục đếm ngược 7 giây lại từ đầu cho câu này
         });
 
         document.getElementById('start-btn').addEventListener('click', async () => { await Tone.start(); initAudio(); startGame(); });
